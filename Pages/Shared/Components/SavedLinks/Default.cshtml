@@ -1,0 +1,42 @@
+@model Models.PartitionedLinks
+
+<div class="sidebar__content">
+    @* <h2>My Links</h2> *@
+    <ul class="sidebar__list">
+    @foreach (var link in Model.OwnedLinks)
+    {
+        <li class="sidebar-list-item">
+            <div>
+                <a href="@link.Destination" target="_blank">@link.Slug</a>
+            </div>
+            <div>
+                <a asp-page="./Edit" asp-route-id="@link.ShortLinkId">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@link.ShortLinkId">Delete</a>
+            </div>
+        </li>
+    }
+    </ul>
+
+    @* <h2>Other Links</h2>
+    <p>You created these links before signing in, so they aren't currently saved to your account.</p> *@
+    <ul class="sidebar__list">
+    @foreach (var link in Model.UnownedLinks)
+    {
+        <li class="sidebar-list-item">
+            <div class="sidebar-list-item__short-link">Shortlink.com/@link.Slug</div>
+            <div class="sidebar-list-item__long-link">@link.Destination</div>
+            <div class="btns-container">
+                <a class="btns-container__btn" href="@link.Destination" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+                <a class="btns-container__btn btns-container__btn--light-blue" asp-page="./Edit" asp-route-id="@link.ShortLinkId">Edit</a>
+                <button class="btns-container__btn btns-container__btn--dark-blue" >QR</button>
+                <button class="btns-container__btn btns-container__btn--dark-green" >Copy</button>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                <a class="btns-container__btn btns-container__btn--dark-yellow" asp-page="./SaveLink" asp-route-id="@link.ShortLinkId">Save</a>
+                }
+                <a class="btns-container__btn btns-container__btn--dark-red " asp-page="./Delete" asp-route-id="@link.ShortLinkId">Delete</a>
+            </div>
+        </li>
+    }
+    </ul>
+</div>

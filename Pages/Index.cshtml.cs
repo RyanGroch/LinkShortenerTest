@@ -1,0 +1,61 @@
+using System.Text.Json;
+using LinkShortener.Data;
+using LinkShortener.Models;
+using LinkShortener.Utils;
+using LinkShortener.BaseClasses;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+
+namespace LinkShortener.Pages;
+
+public class IndexModel(
+        ApplicationDbContext context,
+        IAuthorizationService authorizationService,
+        UserManager<IdentityUser> userManager) 
+    : DI_BasePageModel(context, authorizationService, userManager)
+{
+    [BindProperty]
+    public ShortLinkView ShortLinkView { get; set; } = default!;
+
+    public ShortLink ShortLink { get; set; } = default!;
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        string destination = LinkUtils.CleanDestination(ShortLinkView.Destination);
+        string slug = LinkUtils.CleanSlug(ShortLinkView.Slug);
+
+        string? userId = UserManager.GetUserId(User);
+
+        ShortLink = new()
+        {
+            Destination = destination,
+            Slug = slug,
+            OwnerId = userId
+        };
+
+        Context.ShortLink.Add(ShortLink);
+        await Context.SaveChangesAsync();
+
+        if (userId == null)
+        {
+            var savedLinks = JsonUtils.Deserialize<List<string>>(Request.Cookies["SavedLinks"]) ?? [];
+            savedLinks.Add(ShortLink.ShortLinkId.ToString());
+
+            var serializedLinks = JsonSerializer.Serialize(savedLinks);
+
+            // Ensure that updated cookies apply to both this request and all following requests
+            HttpContext.Items["SavedLinks"] = serializedLinks;
+            Response.Cookies.Append("SavedLinks", serializedLinks); 
+        }
+
+        return Page();
+    }
+}

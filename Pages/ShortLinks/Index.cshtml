@@ -1,0 +1,52 @@
+@page
+@model LinkShortener.Pages.ShortLinks.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortLink[0].Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortLink[0].Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortLink[0].OwnerId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ShortLink) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Slug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerId)
+            </td>
+            <td>
+                <a asp-page="../Edit" asp-route-id="@item.ShortLinkId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ShortLinkId">Details</a> |
+                <a asp-page="../Delete" asp-route-id="@item.ShortLinkId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    OVER HERE!
+    @await Component.InvokeAsync("SavedLinks")
+</div>

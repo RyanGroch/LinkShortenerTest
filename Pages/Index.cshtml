@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (Model.ShortLink is null)
+{
+<div class="card">
+    <h1 class="card__header">Create a Link</h1>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="card__form-warning"></div>
+        <div class="card__form-group">
+            <label asp-for="ShortLinkView.Destination" class="card__form-label"><i class="fa fa-link" aria-hidden="true"></i> Full-length URL</label>
+            <input asp-for="ShortLinkView.Destination" class="card__form-input" />
+            <span asp-validation-for="ShortLinkView.Destination" class="card__form-warning"></span>
+        </div>
+        <div class="card__form-group">
+            <label asp-for="ShortLinkView.Slug" class="card__form-label"><i class="fa fa-pencil" aria-hidden="true"></i> Your Custom Alias</label>
+            <div class="card__form-subgroup">
+                <span class="card__form-subgroup-text">Shortlink.com/</span>
+                <input asp-for="ShortLinkView.Slug" class="card__form-input" />
+            </div>
+            <span asp-validation-for="ShortLinkView.Slug" class="card__form-warning"></span>
+        </div>
+        <input type="submit" value="Shorten Link" class="card__form-btn" />
+    </form>
+</div>
+}
+else
+{
+<div class="card">
+    <h1 class="card__header">Your New Link</h1>
+    <dl class="data-list">
+        <div>
+            <dt class="data-list__term">
+                <i class="fa fa-link" aria-hidden="true"></i> Full-Length URL
+            </dt>
+            <dd class="data-list__definition">
+                @(Model.ShortLink.Destination)
+            </dd>
+        </div>
+        <div>
+            <dt class="data-list__term">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Your Alias
+            </dt>
+            <dd class="data-list__definition">
+                @(Model.ShortLink.Slug)
+            </dd>
+        </div>
+    </dl>
+    <div class="btns-container">
+        <a class="btns-container__btn btns-container__btn--light-blue" href="@Model.ShortLink.Destination" target="_blank">Visit Link</a>
+        <button class="btns-container__btn btns-container__btn--dark-blue" >QR</button>
+        <button class="btns-container__btn btns-container__btn--dark-green" >Copy</button>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
