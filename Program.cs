@@ -4,19 +4,40 @@ using LinkShortener.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+if (builder.Environment.IsDevelopment())
+{
+    var devConnString = builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlite(devConnString));
+    builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+}
+else
+{
+    var prodConnString = builder.Configuration.GetConnectionString("MsSqlConnection")
+        ?? throw new InvalidOperationException("Connection string 'MsSqlConnection' not found.");
+
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(prodConnString));
+}
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+        .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
 
 
 var app = builder.Build();
+
+// Migrate the database on startup
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dataContext.Database.EnsureCreated();
+    // dataContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

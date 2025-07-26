@@ -1,0 +1,38 @@
+version: "3.4"
+
+services:
+  mssql:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: mssql
+    environment:
+      - SA_PASSWORD=P@ssword1
+      - ACCEPT_EULA=Y
+    restart: unless-stopped
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: /opt/mssql-tools18/bin/sqlcmd -U sa -P "P@ssword1" -C -Q "SELECT 1" -b -o /dev/null
+      start_period: 10s
+      timeout: 2s
+      interval: 60s
+      retries: 5
+    # networks:
+    #   - app-network
+
+  linkshortener:
+    image: ${DOCKER_REGISTRY-}linkshortener
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7106:7106"
+    environment:
+      - ASPNETCORE_URLS=http://*:7106
+    depends_on:
+      mssql:
+        condition: service_healthy
+    # networks:
+    #   - app-network
+# networks:
+#   app-network:
+#     driver: bridge
