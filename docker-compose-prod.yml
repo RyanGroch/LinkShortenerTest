@@ -1,0 +1,5 @@
+services:
+  linkshortener:
+    ports:
+      - "80:7106"
+      - "443:7106"
