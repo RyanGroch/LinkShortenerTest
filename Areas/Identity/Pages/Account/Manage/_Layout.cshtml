@@ -9,17 +9,15 @@
     }
 }
 
-<h1>Manage your account</h1>
-
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
+<div class="center">
+    <div class="card card--large">
+        <h1 class="card__header">Manage your account.</h1>
+        <p class="card__paragraph">Here you can change your account settings.</p>
+        <div class="card__menu-divider">
             <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+            <div>
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>

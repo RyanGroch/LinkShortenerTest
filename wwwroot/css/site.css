@@ -291,6 +291,7 @@ body {
 
 .card__paragraph {
   font-size: 1.125rem;
+  padding-bottom: 0.5rem;
 }
 
 .card__header {
@@ -299,8 +300,19 @@ body {
   padding-bottom: 0.5rem;
 }
 
+.card__header--small {
+  font-size: 1.25rem;
+}
+
+.card__menu-divider {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  padding-top: 0.5rem;
+}
+
 .card__form-group {
-  padding: 0.5rem 0;
+  padding: 0 0 0.5rem;
 }
 
 .card__form-subgroup {
@@ -340,6 +352,14 @@ body {
   background-color: #00793a;
 }
 
+.card__form-btn--warning[type="submit"] {
+  background-color: #900000;
+}
+
+.card__form-btn--warning[type="submit"]:hover {
+  background-color: #790000;
+}
+
 .card__form-warning {
   color: red;
   display: block;
@@ -349,6 +369,10 @@ body {
 .card__return-link {
   display: inline-block;
   padding-top: 0.75rem;
+}
+
+.card__link-group {
+  padding: 0.75rem 0;
 }
 
 .data-list {
@@ -366,6 +390,27 @@ body {
 
 .data-list__definition {
   padding-bottom: 1rem;
+}
+
+.manage-nav {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 0.25rem;
+}
+
+.manage-nav__item-link {
+  display: block;
+  border: 1px solid #e1e1e1;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.manage-nav__item-link--active {
+  background-color: #00b6e9;
 }
 
 .footer {
