@@ -27,7 +27,7 @@
     </form>
 </div>
 
-<section class="general-content">
+<section class="general-content general-content--white">
     <h2>What is this?</h2>
     <p>This app is a URL-shortener; it can transform long and complex URLs into short and readable links. Apps like these work by redirecting web traffic from the shortened link to the full-length URL. One of the most well-known link shorteners is TinyUrl.com, which this app is heavily based on.</p>
     <p>Currently the following features are implemented:</p>
@@ -41,7 +41,7 @@
 }
 else
 {
-<div class="card">
+<div class="card" data-linkcontent="@(Model.HostUrl)/@(Model.ShortLink.Slug)">
     <h1 class="card__header">Your New Link</h1>
     <dl class="data-list">
         <div>
@@ -63,13 +63,20 @@ else
     </dl>
     <div class="btns-container">
         <a class="btns-container__btn btns-container__btn--light-blue" href="@Model.ShortLink.Destination" target="_blank">Visit Link</a>
-        <button class="btns-container__btn btns-container__btn--dark-blue" >QR</button>
-        <button class="btns-container__btn btns-container__btn--dark-green" data-copylink="@(Model.HostUrl)/@(Model.ShortLink.Slug)">
+        <button qr-btn class="btns-container__btn btns-container__btn--dark-blue" >QR</button>
+        <button copy-btn class="btns-container__btn btns-container__btn--dark-green">
             <div class="btn-text">
-                <span primary class="btn-text__item btn-text__item--primary">Copy</span>
-                <span secondary class="btn-text__item btn-text__item--secondary btn-text__item--hidden" aria-hidden="true">Copied!</span>
+                <span copy-primary class="btn-text__item btn-text__item--primary">Copy</span>
+                <span copy-secondary class="btn-text__item btn-text__item--secondary btn-text__item--hidden" aria-hidden="true">Copied!</span>
             </div>
         </button>
+    </div>
+    <div qr-wrapper class="qr-wrapper">
+        <div qr-wrapper-internal class="qr-wrapper__internal"></div>
+        <div class="btns-container btns-container--stackable">
+            <button qr-wrapper-btn class="btns-container__btn btns-container__btn--full-width btns-container__btn--dark-green">Download</button>
+            <button qr-wrapper-btn-close class="btns-container__btn btns-container__btn--full-width">Close</button>
+        </div>
     </div>
 </div>
 }

@@ -29,57 +29,69 @@
     const qrWrapperBtn = link.querySelector("[qr-wrapper-btn]");
     const qrWrapperCloseBtn = link.querySelector("[qr-wrapper-btn-close]");
 
-    qrWrapperInternal.innerHTML = "";
-    new QRCode(qrWrapperInternal, {
-      text: link.dataset.linkcontent,
-      width: 128,
-      height: 128,
-    });
+    if (qrWrapperInternal) {
+      qrWrapperInternal.innerHTML = "";
+      new QRCode(qrWrapperInternal, {
+        text: link.dataset.linkcontent,
+        width: 128,
+        height: 128,
+      });
+    }
 
-    qrBtn.addEventListener("click", async () => {
-      qrWrapper.classList.add(qrVisibleClass);
-    });
+    if (qrBtn) {
+      qrBtn.addEventListener("click", async () => {
+        qrWrapper.classList.add(qrVisibleClass);
+      });
+    }
 
-    qrWrapperBtn.addEventListener("click", () => {
-      const canvas = link.querySelector("canvas");
-      const dataURL = canvas.toDataURL("image/png");
+    if (qrWrapperBtn) {
+      qrWrapperBtn.addEventListener("click", () => {
+        const canvas = link.querySelector("canvas");
+        const dataURL = canvas.toDataURL("image/png");
 
-      const downloadLink = document.createElement("a");
-      downloadLink.href = dataURL;
-      downloadLink.download = "QR-Code.png";
+        const downloadLink = document.createElement("a");
+        downloadLink.href = dataURL;
+        downloadLink.download = "QR-Code.png";
 
-      downloadLink.click();
-      downloadLink.remove();
-    });
+        downloadLink.click();
+        downloadLink.remove();
+      });
+    }
 
-    qrWrapperCloseBtn.addEventListener("click", () => {
-      qrWrapper.classList.remove(qrVisibleClass);
-    });
+    if (qrWrapperCloseBtn) {
+      qrWrapperCloseBtn.addEventListener("click", () => {
+        qrWrapper.classList.remove(qrVisibleClass);
+      });
+    }
 
     const mainText = link.querySelector("[copy-primary]");
     const secondaryText = link.querySelector("[copy-secondary]");
 
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(link.dataset.linkcontent);
+    // console.warn(copyBtn, "HERE?");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        try {
+          console.warn("oh?", link, link.dataset.linkcontent);
+          await navigator.clipboard.writeText(link.dataset.linkcontent);
 
-        if (!copyBtnRecentlyClicked) {
-          copyBtnRecentlyClicked = true;
+          if (!copyBtnRecentlyClicked) {
+            copyBtnRecentlyClicked = true;
 
-          secondaryText.classList.remove(hiddenClass);
-          mainText.classList.add(hiddenClass);
+            secondaryText.classList.remove(hiddenClass);
+            mainText.classList.add(hiddenClass);
 
-          setTimeout(() => {
-            copyBtnRecentlyClicked = false;
+            setTimeout(() => {
+              copyBtnRecentlyClicked = false;
 
-            mainText.classList.remove(hiddenClass);
-            secondaryText.classList.add(hiddenClass);
-          }, 1500);
+              mainText.classList.remove(hiddenClass);
+              secondaryText.classList.add(hiddenClass);
+            }, 1500);
+          }
+        } catch {
+          console.error("Could not copy link to clipboard.");
         }
-      } catch {
-        console.error("Could not copy link to clipboard.");
-      }
-    });
+      });
+    }
   });
 
   // Hamburger menu
@@ -88,13 +100,15 @@
   const visibleClass = "nav__list--visible";
   let isOpen = false;
 
-  hamburger.addEventListener("click", () => {
-    isOpen = !isOpen;
-    // Toggle wasn't working for some reason?
-    if (isOpen) {
-      navList.classList.add(visibleClass);
-    } else {
-      navList.classList.remove(visibleClass);
-    }
-  });
+  if (hamburger && navList) {
+    hamburger.addEventListener("click", () => {
+      isOpen = !isOpen;
+      // Toggle wasn't working for some reason?
+      if (isOpen) {
+        navList.classList.add(visibleClass);
+      } else {
+        navList.classList.remove(visibleClass);
+      }
+    });
+  }
 })();
