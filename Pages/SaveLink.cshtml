@@ -5,35 +5,32 @@
     ViewData["Title"] = "Save Link";
 }
 
-
-<div class="center">
-    <div class="card card--large">
-        <h1 class="card__header">Save Link to Account?</h1>
-        <p class="card__paragraph">This will cause the link to be saved to your account instead of in your browser. This action cannot be undone.</p>
-        <dl class="data-list">
-            <div>
-                <dt class="data-list__term">
-                    <i class="fa fa-link" aria-hidden="true"></i> Full-Length URL
-                </dt>
-                <dd class="data-list__definition">
-                    @Html.DisplayFor(model => model.ShortLink.Destination)
-                </dd>
-            </div>
-            <div>
-                <dt class="data-list__term">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Your Alias
-                </dt>
-                <dd class="data-list__definition">
-                    @Html.DisplayFor(model => model.ShortLink.Slug)
-                </dd>
-            </div>
-        </dl>
-            
-        <form method="post">
-            <div class="btns-container">
-                <input type="submit" value="Save Link" class="btns-container__btn btns-container__btn--dark-yellow" />
-                <a asp-page="./Index" class="btns-container__btn btns-container__btn--dark-green">Back to List</a>
-            </div>
-        </form>
-    </div>
+<div class="card card--large">
+    <h1 class="card__header">Save Link to Account?</h1>
+    <p class="card__paragraph">This will cause the link to be saved to your account instead of in your browser. This action cannot be undone.</p>
+    <dl class="data-list">
+        <div>
+            <dt class="data-list__term">
+                <i class="fa fa-link" aria-hidden="true"></i> Full-Length URL
+            </dt>
+            <dd class="data-list__definition">
+                @Html.DisplayFor(model => model.ShortLink.Destination)
+            </dd>
+        </div>
+        <div>
+            <dt class="data-list__term">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Your Alias
+            </dt>
+            <dd class="data-list__definition">
+                @Html.DisplayFor(model => model.ShortLink.Slug)
+            </dd>
+        </div>
+    </dl>
+        
+    <form method="post">
+        <div class="btns-container">
+            <input type="submit" value="Save Link" class="btns-container__btn btns-container__btn--dark-yellow" />
+            <a asp-page="./Index" class="btns-container__btn btns-container__btn--dark-green">Back to List</a>
+        </div>
+    </form>
 </div>

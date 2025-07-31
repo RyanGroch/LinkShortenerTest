@@ -5,26 +5,24 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="center">
-    <div class="card card--large">
-        <h1 class="card__header">Edit Link</h1>
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="card__form-warning"></div>
-            <input type="hidden" asp-for="ShortLinkView.ShortLinkId" />
-            <div class="card__form-group">
-                <label asp-for="ShortLinkView.Destination" class="card__form-label"></label>
-                <input asp-for="ShortLinkView.Destination" class="card__form-input" />
-                <span asp-validation-for="ShortLinkView.Destination" class="card__form-warning"></span>
-            </div>
-            <div class="card__form-group">
-                <label asp-for="ShortLinkView.Slug" class="card__form-label"></label>
-                <input asp-for="ShortLinkView.Slug" class="card__form-input" />
-                <span asp-validation-for="ShortLinkView.Slug" class="card__form-warning"></span>
-            </div>
-            <input type="submit" value="Save" class="card__form-btn" />
-        </form>
-        <a asp-page="./Index" class="card__return-link">Nevermind...</a>
-    </div>
+<div class="card">
+    <h1 class="card__header">Edit Link</h1>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="card__form-warning"></div>
+        <input type="hidden" asp-for="ShortLinkView.ShortLinkId" />
+        <div class="card__form-group">
+            <label asp-for="ShortLinkView.Destination" class="card__form-label"></label>
+            <input asp-for="ShortLinkView.Destination" class="card__form-input" />
+            <span asp-validation-for="ShortLinkView.Destination" class="card__form-warning"></span>
+        </div>
+        <div class="card__form-group">
+            <label asp-for="ShortLinkView.Slug" class="card__form-label">Your Alias</label>
+            <input asp-for="ShortLinkView.Slug" class="card__form-input" />
+            <span asp-validation-for="ShortLinkView.Slug" class="card__form-warning"></span>
+        </div>
+        <input type="submit" value="Save" class="card__form-btn" />
+    </form>
+    <a asp-page="./Index" class="card__return-link">Nevermind...</a>
 </div>
 
 @section Scripts {

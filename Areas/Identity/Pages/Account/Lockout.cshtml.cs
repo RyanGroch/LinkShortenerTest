@@ -3,6 +3,7 @@
 #nullable disable
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LinkShortener.Areas.Identity.Pages.Account
@@ -18,8 +19,14 @@ namespace LinkShortener.Areas.Identity.Pages.Account
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return RedirectToPage("Login");
+        }
+
+        public IActionResult OnPost()
+        {
+            return RedirectToPage("Login");
         }
     }
 }

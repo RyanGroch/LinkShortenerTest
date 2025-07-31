@@ -4,31 +4,31 @@
     ViewData["Title"] = "Register";
 }
 
-<div div class="center">
-    <div class="card card--large">
-        <h1 class="card__header">Create a new account.</h1>
-        <p class="card__paragraph">This is a toy application, so we won't send you any real emails. If you'd prefer to use a fake email address, feel free.</p>
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <div asp-validation-summary="ModelOnly" class="card__form-warning" role="alert"></div>
-            <div class="card__form-group">
-                <label asp-for="Input.Email" class="card__form-label">Email</label>
-                <input asp-for="Input.Email" class="card__form-input" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <span asp-validation-for="Input.Email" class="card__form-warning"></span>
-            </div>
-            <div class="card__form-group">
-                <label asp-for="Input.Password" class="card__form-label">Password</label>
-                <input asp-for="Input.Password" class="card__form-input" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <span asp-validation-for="Input.Password" class="card__form-warning"></span>
-            </div>
-            <div class="card__form-group">
-                <label asp-for="Input.ConfirmPassword" class="card__form-label">Confirm Password</label>
-                <input asp-for="Input.ConfirmPassword" class="card__form-input" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <span asp-validation-for="Input.ConfirmPassword" class="card__form-warning"></span>
-            </div>
-            <input id="registerSubmit" value="Register" type="submit" class="card__form-btn" />
-        </form>
-    </div>
+
+<div class="card">
+    <h1 class="card__header">Create a new account.</h1>
+    <p class="card__paragraph">This is a toy application, so we won't send you any real emails. If you'd prefer to use a fake email address, feel free.</p>
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="ModelOnly" class="card__form-warning" role="alert"></div>
+        <div class="card__form-group">
+            <label asp-for="Input.Email" class="card__form-label">Email</label>
+            <input asp-for="Input.Email" class="card__form-input" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+            <span asp-validation-for="Input.Email" class="card__form-warning"></span>
+        </div>
+        <div class="card__form-group">
+            <label asp-for="Input.Password" class="card__form-label">Password</label>
+            <input asp-for="Input.Password" class="card__form-input" autocomplete="new-password" aria-required="true" placeholder="password" />
+            <span asp-validation-for="Input.Password" class="card__form-warning"></span>
+        </div>
+        <div class="card__form-group">
+            <label asp-for="Input.ConfirmPassword" class="card__form-label">Confirm Password</label>
+            <input asp-for="Input.ConfirmPassword" class="card__form-input" autocomplete="new-password" aria-required="true" placeholder="password" />
+            <span asp-validation-for="Input.ConfirmPassword" class="card__form-warning"></span>
+        </div>
+        <input id="registerSubmit" value="Register" type="submit" class="card__form-btn" />
+    </form>
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

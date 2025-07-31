@@ -18,7 +18,7 @@
         <div class="card__form-group">
             <label asp-for="ShortLinkView.Slug" class="card__form-label"><i class="fa fa-pencil" aria-hidden="true"></i> Your Custom Alias</label>
             <div class="card__form-subgroup">
-                <span class="card__form-subgroup-text">Shortlink.com/</span>
+                <span class="card__form-subgroup-text">@Model.HostUrl/</span>
                 <input asp-for="ShortLinkView.Slug" class="card__form-input" />
             </div>
             <span asp-validation-for="ShortLinkView.Slug" class="card__form-warning"></span>
@@ -26,6 +26,18 @@
         <input type="submit" value="Shorten Link" class="card__form-btn" />
     </form>
 </div>
+
+<section class="general-content">
+    <h2>What is this?</h2>
+    <p>This app is a URL-shortener; it can transform long and complex URLs into short and readable links. Apps like these work by redirecting web traffic from the shortened link to the full-length URL. One of the most well-known link shorteners is TinyUrl.com, which this app is heavily based on.</p>
+    <p>Currently the following features are implemented:</p>
+    <ul>
+        <li>CRUD (Create, Read, Update, and Delete) functionality for shortened links.</li>
+        <li>Authentication and simple authorization; users may create accounts, and any links that they create while logged in will belong to their account.</li>
+        <li>Cookie storage of any links that the user creates while unauthenticated.</li>
+    </ul>
+    <p>This app is intended for educational purposes only. I created it primarily to teach myself C# and the ASP.NET Core framework. Even so, please feel free to use it to your heart's content - just don't count on your links working forever. You can view the source code of this app here.</p>
+</section>
 }
 else
 {
@@ -45,14 +57,19 @@ else
                 <i class="fa fa-pencil" aria-hidden="true"></i> Your Alias
             </dt>
             <dd class="data-list__definition">
-                @(Model.ShortLink.Slug)
+                @(Model.HostUrl)/@(Model.ShortLink.Slug)
             </dd>
         </div>
     </dl>
     <div class="btns-container">
         <a class="btns-container__btn btns-container__btn--light-blue" href="@Model.ShortLink.Destination" target="_blank">Visit Link</a>
         <button class="btns-container__btn btns-container__btn--dark-blue" >QR</button>
-        <button class="btns-container__btn btns-container__btn--dark-green" >Copy</button>
+        <button class="btns-container__btn btns-container__btn--dark-green" data-copylink="@(Model.HostUrl)/@(Model.ShortLink.Slug)">
+            <div class="btn-text">
+                <span primary class="btn-text__item btn-text__item--primary">Copy</span>
+                <span secondary class="btn-text__item btn-text__item--secondary btn-text__item--hidden" aria-hidden="true">Copied!</span>
+            </div>
+        </button>
     </div>
 </div>
 }

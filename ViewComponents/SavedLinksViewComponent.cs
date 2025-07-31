@@ -49,13 +49,14 @@ namespace LinkShortener.ViewComponents
                                   select link;
 
 
-            var partitionedLinks = new PartitionedLinks()
+            var savedLinksData = new SavedLinksData()
             {
                 UnownedLinks = await unownedLinksQuery.ToListAsync(),
-                OwnedLinks = await ownedLinksQuery.ToListAsync()
+                OwnedLinks = await ownedLinksQuery.ToListAsync(),
+                HostUrl = Request.Host.ToString()
             };
 
-            return View(partitionedLinks);
+            return View(savedLinksData);
         }
     }
 }

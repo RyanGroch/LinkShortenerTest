@@ -5,34 +5,32 @@
     ViewData["Title"] = "Delete";
 }
 
-<div class="center">
-    <div class="card card--large">
-        <h1 class="card__header">Delete This Link?</h1>
-        <p class="card__paragraph">This action cannot be undone.</p>
-        <dl class="data-list">
-            <div>
-                <dt class="data-list__term">
-                    <i class="fa fa-link" aria-hidden="true"></i> Full-Length URL
-                </dt>
-                <dd class="data-list__definition">
-                    @Html.DisplayFor(model => model.ShortLink.Destination)
-                </dd>
-            </div>
-            <div>
-                <dt class="data-list__term">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Your Alias
-                </dt>
-                <dd class="data-list__definition">
-                    @Html.DisplayFor(model => model.ShortLink.Slug)
-                </dd>
-            </div>
-        </dl>
-        
-        <form method="post">
-            <div class="btns-container">
-                <input type="submit" value="Delete" class="btns-container__btn btns-container__btn--dark-red" />
-                <a asp-page="./Index" class="btns-container__btn btns-container__btn--dark-green">Nevermind...</a>
-            </div>
-        </form>
-    </div>
+<div class="card card--large">
+    <h1 class="card__header">Delete This Link?</h1>
+    <p class="card__paragraph">This action cannot be undone.</p>
+    <dl class="data-list">
+        <div>
+            <dt class="data-list__term">
+                <i class="fa fa-link" aria-hidden="true"></i> Full-Length URL
+            </dt>
+            <dd class="data-list__definition">
+                @Html.DisplayFor(model => model.ShortLink.Destination)
+            </dd>
+        </div>
+        <div>
+            <dt class="data-list__term">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Your Alias
+            </dt>
+            <dd class="data-list__definition">
+                @Html.DisplayFor(model => model.ShortLink.Slug)
+            </dd>
+        </div>
+    </dl>
+    
+    <form method="post">
+        <div class="btns-container">
+            <input type="submit" value="Delete" class="btns-container__btn btns-container__btn--dark-red" />
+            <a asp-page="./Index" class="btns-container__btn btns-container__btn--dark-green">Nevermind...</a>
+        </div>
+    </form>
 </div>

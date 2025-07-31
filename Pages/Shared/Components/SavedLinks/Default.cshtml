@@ -1,4 +1,4 @@
-@model Models.PartitionedLinks
+@model Models.SavedLinksData
 
 <div class="sidebar__content">
     @* <h2>My Links</h2> *@
@@ -22,19 +22,29 @@
     <ul class="sidebar__list">
     @foreach (var link in Model.UnownedLinks)
     {
-        <li class="sidebar-list-item">
-            <div class="sidebar-list-item__short-link">Shortlink.com/@link.Slug</div>
+        <li class="sidebar-list-item" data-linkcontent="@(Model.HostUrl)/@(link.Slug)"">
+            <div class="sidebar-list-item__short-link">@(Model.HostUrl)/@(link.Slug)</div>
             <div class="sidebar-list-item__long-link">@link.Destination</div>
             <div class="btns-container">
                 <a class="btns-container__btn" href="@link.Destination" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
-                <a class="btns-container__btn btns-container__btn--light-blue" asp-page="./Edit" asp-route-id="@link.ShortLinkId">Edit</a>
-                <button class="btns-container__btn btns-container__btn--dark-blue" >QR</button>
-                <button class="btns-container__btn btns-container__btn--dark-green" >Copy</button>
+                <a class="btns-container__btn btns-container__btn--light-blue" asp-page="/Edit" asp-route-id="@link.ShortLinkId">Edit</a>
+                <button qr-btn class="btns-container__btn btns-container__btn--dark-blue">QR</button>
+                <button copy-btn class="btns-container__btn btns-container__btn--dark-green">
+                    <div class="btn-text">
+                        <span copy-primary class="btn-text__item btn-text__item--primary">Copy</span>
+                        <span copy-secondary class="btn-text__item btn-text__item--secondary btn-text__item--hidden" aria-hidden="true">Copied!</span>
+                    </div>
+                </button>
                 @if (User.Identity?.IsAuthenticated == true)
                 {
-                <a class="btns-container__btn btns-container__btn--dark-yellow" asp-page="./SaveLink" asp-route-id="@link.ShortLinkId">Save</a>
+                    <a class="btns-container__btn btns-container__btn--dark-yellow" asp-page="/SaveLink" asp-route-id="@link.ShortLinkId">Save</a>
                 }
-                <a class="btns-container__btn btns-container__btn--dark-red " asp-page="./Delete" asp-route-id="@link.ShortLinkId">Delete</a>
+                <a class="btns-container__btn btns-container__btn--dark-red" asp-page="/Delete" asp-route-id="@(link.ShortLinkId)">Delete</a>
+            </div>
+            <div qr-wrapper class="qr-wrapper">
+                <div qr-wrapper-internal class="qr-wrapper__internal"></div>
+                <button qr-wrapper-btn class="qr-wrapper__btn">Download</button>
+                <button qr-wrapper-btn-close class="qr-wrapper__btn">Close</button>
             </div>
         </li>
     }

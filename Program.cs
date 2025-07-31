@@ -61,4 +61,28 @@ app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
 
+app.MapFallback(async (HttpContext context, ApplicationDbContext db) =>
+{
+    var slug = context.Request.Path.Value?.TrimStart('/');
+
+    if (string.IsNullOrWhiteSpace(slug))
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("Not found.");
+        return;
+    }
+
+    var link = await db.ShortLink.FirstOrDefaultAsync(l => l.Slug == slug);
+
+    if (link is null)
+    {
+        context.Response.StatusCode = 404;
+        await context.Response.WriteAsync("Link not found.");
+    }
+    else
+    {
+        context.Response.Redirect(link.Destination);
+    }
+});
+
 app.Run();

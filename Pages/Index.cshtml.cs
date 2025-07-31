@@ -22,8 +22,17 @@ public class IndexModel(
 
     public ShortLink ShortLink { get; set; } = default!;
 
+    public string HostUrl { get; set; } = default!;
+
+    public void OnGet()
+    {
+        HostUrl = Request.Host.ToString();
+    }
+
     public async Task<IActionResult> OnPostAsync()
     {
+        HostUrl = Request.Host.ToString();
+
         if (!ModelState.IsValid)
         {
             return Page();
@@ -53,7 +62,12 @@ public class IndexModel(
 
             // Ensure that updated cookies apply to both this request and all following requests
             HttpContext.Items["SavedLinks"] = serializedLinks;
-            Response.Cookies.Append("SavedLinks", serializedLinks); 
+
+            Response.Cookies.Append("SavedLinks", serializedLinks, new()
+            {
+                // Closest we can get to never expiring
+                Expires = new DateTimeOffset(2038, 1, 1, 0, 0, 0, TimeSpan.FromHours(0))
+            });
         }
 
         return Page();
