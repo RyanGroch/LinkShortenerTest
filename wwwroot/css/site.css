@@ -19,6 +19,7 @@ input {
   background: none;
   border: 0;
   color: black;
+  font-size: 1.125rem;
   cursor: pointer;
 }
 
@@ -154,9 +155,9 @@ body {
   width: min(100%, 40rem);
   box-shadow: 0.5rem 0 1rem 0 #000;
   transition: translate 0.25s linear, opacity 0.25s linear;
-  max-height: 100svh;
+  height: 100svh;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 5rem auto;
 }
 
 .sidebar__header {
@@ -170,7 +171,7 @@ body {
 .sidebar__content {
   padding: 1rem 0.75rem;
   max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .sidebar--hidden {

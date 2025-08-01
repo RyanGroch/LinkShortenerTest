@@ -33,7 +33,10 @@
     @if (User.Identity?.IsAuthenticated == true && Model.UnownedLinks.Count > 0)
     {
         <div class="general-content">
-            <h2>Other Links</h2>
+            @if (Model.OwnedLinks.Count > 0)
+            {
+            <h2>Unsaved Links</h2>
+            }
             <p>You created these links before signing in, so they aren't currently saved to your account.</p>
         </div>
     }
