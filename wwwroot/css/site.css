@@ -403,7 +403,8 @@ body {
 
 .card__menu-divider {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
   gap: 3rem;
   padding-top: 0.5rem;
 }
@@ -461,6 +462,10 @@ body {
   color: red;
   display: block;
   min-height: 1.25rem;
+}
+
+.card__form-warning ul {
+  list-style-type: none;
 }
 
 .card__return-link {
@@ -566,5 +571,10 @@ body {
 
   .btns-container--stackable {
     flex-direction: column;
+  }
+
+  .card__menu-divider {
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
   }
 }
