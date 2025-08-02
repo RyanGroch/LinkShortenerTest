@@ -4,7 +4,8 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 COPY [".", "."]
-# ENV ASPNETCORE_ENVIRONMENT=Production
+RUN dotnet tool install -g Microsoft.Web.LibraryManager.Cli   
+RUN /root/.dotnet/tools/libman restore
 RUN dotnet build -c Release -o /app/build
 
 # Stage 2: Publish

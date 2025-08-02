@@ -2,4 +2,5 @@
 bin/
 obj/
 publish/
+wwwroot/lib
 *.db
