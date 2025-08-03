@@ -27,8 +27,13 @@ else
     var monsterAspConnString = builder.Configuration.GetConnectionString("MonsterAspConnection")
         ?? throw new InvalidOperationException("Connection string 'MonsterAspConnection' not found.");
 
+    var dbPass = Environment.GetEnvironmentVariable("DB_PASSWORD")
+        ?? throw new InvalidOperationException("Database password 'DB_PASSWORD' is not set as an environment variable.");
+
+    var corrrectedConnString = monsterAspConnString.Replace("[DB_PASSWORD]", dbPass);
+
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(monsterAspConnString));
+        options.UseSqlServer(corrrectedConnString));
 }
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -72,8 +77,6 @@ app.MapRazorPages()
 app.MapFallback(async (HttpContext context, ApplicationDbContext db) =>
 {
     var slug = context.Request.Path.Value?.TrimStart('/');
-
-    Console.WriteLine("Over hereeeee? " + slug);
 
     if (string.IsNullOrWhiteSpace(slug))
     {
