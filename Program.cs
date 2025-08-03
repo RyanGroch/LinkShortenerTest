@@ -14,13 +14,21 @@ if (builder.Environment.IsDevelopment())
         options.UseSqlite(devConnString));
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 }
-else
+else if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
 {
-    var prodConnString = builder.Configuration.GetConnectionString("MsSqlConnection")
-        ?? throw new InvalidOperationException("Connection string 'MsSqlConnection' not found.");
+    var dockerConnString = builder.Configuration.GetConnectionString("DockerConnection")
+        ?? throw new InvalidOperationException("Connection string 'DockerConnection' not found.");
 
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(prodConnString));
+        options.UseSqlServer(dockerConnString));
+}
+else
+{
+    var monsterAspConnString = builder.Configuration.GetConnectionString("MonsterAspConnection")
+        ?? throw new InvalidOperationException("Connection string 'MonsterAspConnection' not found.");
+
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(monsterAspConnString));
 }
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
