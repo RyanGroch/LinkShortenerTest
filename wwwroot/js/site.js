@@ -70,7 +70,27 @@
     if (copyBtn) {
       copyBtn.addEventListener("click", async () => {
         try {
-          await navigator.clipboard.writeText(link.dataset.linkcontent);
+          const linkContent = link.dataset.linkcontent;
+
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(linkContent);
+          } else {
+            const textArea = document.createElement("textarea");
+            textArea.value = linkContent;
+
+            // Move textarea out of the viewport so it's not visible
+            textArea.style.position = "absolute";
+            textArea.style.opacity = 0;
+
+            document.body.prepend(textArea);
+            textArea.select();
+
+            try {
+              document.execCommand("copy");
+            } finally {
+              textArea.remove();
+            }
+          }
 
           if (!copyBtnRecentlyClicked) {
             copyBtnRecentlyClicked = true;
