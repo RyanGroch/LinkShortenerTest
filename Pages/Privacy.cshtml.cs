@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LinkShortener.Pages;
+namespace SmallUrl.Pages;
 
 public class PrivacyModel : PageModel
 {

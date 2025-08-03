@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using LinkShortener.Models;
+using SmallUrl.Models;
 
-namespace LinkShortener.Data;
+namespace SmallUrl.Data;
 
 public class ApplicationDbContext : IdentityDbContext
 {
@@ -11,5 +11,5 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-public DbSet<LinkShortener.Models.ShortLink> ShortLink { get; set; } = default!;
+public DbSet<SmallUrl.Models.ShortLink> ShortLink { get; set; } = default!;
 }

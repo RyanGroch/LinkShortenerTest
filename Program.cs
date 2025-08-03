@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using LinkShortener.Data;
+using SmallUrl.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

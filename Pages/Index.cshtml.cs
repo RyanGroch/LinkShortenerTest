@@ -1,15 +1,15 @@
 using System.Text.Json;
-using LinkShortener.Data;
-using LinkShortener.Models;
-using LinkShortener.Utils;
-using LinkShortener.BaseClasses;
+using SmallUrl.Data;
+using SmallUrl.Models;
+using SmallUrl.Utils;
+using SmallUrl.BaseClasses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace LinkShortener.Pages;
+namespace SmallUrl.Pages;
 
 public class IndexModel(
         ApplicationDbContext context,

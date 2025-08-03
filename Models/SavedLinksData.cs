@@ -1,4 +1,4 @@
-namespace LinkShortener.Models
+namespace SmallUrl.Models
 {
     public class SavedLinksData
     {

@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace LinkShortener.Utils
+namespace SmallUrl.Utils
 {
     public static class JsonUtils
     {

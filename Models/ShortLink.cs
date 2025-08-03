@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using LinkShortener.Validation;
+using SmallUrl.Validation;
 using Microsoft.EntityFrameworkCore;
 
-namespace LinkShortener.Models
+namespace SmallUrl.Models
 {
     [Index(nameof(Slug), IsUnique = true)]
     public class ShortLink

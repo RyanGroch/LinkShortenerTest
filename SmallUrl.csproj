@@ -4,7 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-LinkShortener-48248097-6179-456f-9c74-b9f8b881149f</UserSecretsId>
+    <UserSecretsId>aspnet-SmallUrl-48248097-6179-456f-9c74-b9f8b881149f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -19,8 +19,8 @@ services:
     # networks:
     #   - app-network
 
-  linkshortener:
-    image: ${DOCKER_REGISTRY-}linkshortener
+  smallurl:
+    image: ${DOCKER_REGISTRY-}smallurl
     build:
       context: .
       dockerfile: Dockerfile

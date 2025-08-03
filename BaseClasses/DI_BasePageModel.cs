@@ -1,9 +1,9 @@
-using LinkShortener.Data;
+using SmallUrl.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LinkShortener.BaseClasses
+namespace SmallUrl.BaseClasses
 {
     public class DI_BasePageModel : PageModel
     {

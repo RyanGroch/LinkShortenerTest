@@ -1,12 +1,12 @@
 using System.Security.Claims;
-using LinkShortener.Data;
-using LinkShortener.Models;
-using LinkShortener.Utils;
+using SmallUrl.Data;
+using SmallUrl.Models;
+using SmallUrl.Utils;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace LinkShortener.ViewComponents
+namespace SmallUrl.ViewComponents
 {
     public class SavedLinksViewComponent : ViewComponent
     {

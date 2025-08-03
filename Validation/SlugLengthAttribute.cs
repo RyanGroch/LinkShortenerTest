@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LinkShortener.Validation
+namespace SmallUrl.Validation
 {
     public class SlugLengthAttribute : StringLengthAttribute
     {

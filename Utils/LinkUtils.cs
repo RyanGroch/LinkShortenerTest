@@ -1,6 +1,6 @@
-using LinkShortener.Models;
+using SmallUrl.Models;
 
-namespace LinkShortener.Utils
+namespace SmallUrl.Utils
 {
     public static class LinkUtils
     {

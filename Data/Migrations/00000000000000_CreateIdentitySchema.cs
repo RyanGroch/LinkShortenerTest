@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LinkShortener.Data.Migrations
+namespace SmallUrl.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

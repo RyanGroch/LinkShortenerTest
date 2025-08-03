@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using LinkShortener.Utils;
+using SmallUrl.Utils;
 
-namespace LinkShortener.Validation
+namespace SmallUrl.Validation
 {
     public class DestinationAttribute : ValidationAttribute
     {

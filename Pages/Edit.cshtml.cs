@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LinkShortener.Data;
-using LinkShortener.Models;
-using LinkShortener.Utils;
-using LinkShortener.BaseClasses;
+using SmallUrl.Data;
+using SmallUrl.Models;
+using SmallUrl.Utils;
+using SmallUrl.BaseClasses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Text.Json;
 
-namespace LinkShortener.Pages
+namespace SmallUrl.Pages
 {
     public class EditModel(
             ApplicationDbContext context,

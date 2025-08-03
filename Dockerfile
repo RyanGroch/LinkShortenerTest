@@ -18,4 +18,4 @@ ENV ASPNETCORE_HTTP_PORTS=5001
 EXPOSE 5001
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "LinkShortener.dll"]
+ENTRYPOINT ["dotnet", "SmallUrl.dll"]

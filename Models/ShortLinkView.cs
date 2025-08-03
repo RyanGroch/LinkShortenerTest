@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using LinkShortener.Validation;
+using SmallUrl.Validation;
 
-namespace LinkShortener.Models
+namespace SmallUrl.Models
 {
     public class ShortLinkView
     {

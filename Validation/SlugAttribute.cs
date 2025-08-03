@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using LinkShortener.Data;
-using LinkShortener.Models;
+using SmallUrl.Data;
+using SmallUrl.Models;
 
-namespace LinkShortener.Validation
+namespace SmallUrl.Validation
 {
     public class SlugAttribute : ValidationAttribute
     {
