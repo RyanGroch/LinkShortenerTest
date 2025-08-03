@@ -67,11 +67,9 @@
     const mainText = link.querySelector("[copy-primary]");
     const secondaryText = link.querySelector("[copy-secondary]");
 
-    // console.warn(copyBtn, "HERE?");
     if (copyBtn) {
       copyBtn.addEventListener("click", async () => {
         try {
-          console.warn("oh?", link, link.dataset.linkcontent);
           await navigator.clipboard.writeText(link.dataset.linkcontent);
 
           if (!copyBtnRecentlyClicked) {

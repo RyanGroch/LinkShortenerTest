@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SmallUrl</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/font-awsome/css/all.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/font-awsome/css/all.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SmallUrl.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Scripts", required: false)
+    <script defer src="~/lib/font-awesome/js/all.min.js"></script>
+    <script defer src="~/lib/qrcodejs/qrcode.min.js"></script>
     <script defer src="~/js/site.js" asp-append-version="true"></script>
 </head>
 <body>
@@ -42,12 +44,5 @@
             View Source Code
         </p>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/font-awesome/js/all.min.js"></script>
-    <script src="~/lib/qrcodejs/qrcode.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

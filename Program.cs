@@ -73,6 +73,8 @@ app.MapFallback(async (HttpContext context, ApplicationDbContext db) =>
 {
     var slug = context.Request.Path.Value?.TrimStart('/');
 
+    Console.WriteLine("Over hereeeee? " + slug);
+
     if (string.IsNullOrWhiteSpace(slug))
     {
         context.Response.StatusCode = 404;
