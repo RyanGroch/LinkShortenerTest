@@ -1,23 +1,23 @@
-version: "3.4"
-
 services:
   mssql:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     container_name: mssql
     environment:
+      # I'm not currently using Docker in production;
+      # this is not the real database password
       - SA_PASSWORD=P@ssword1
       - ACCEPT_EULA=Y
     restart: unless-stopped
     ports:
       - "1433:1433"
+
+    # Necessary to ensure that the db starts before the application
     healthcheck:
       test: /opt/mssql-tools18/bin/sqlcmd -U sa -P "P@ssword1" -C -Q "SELECT 1" -b -o /dev/null
       start_period: 10s
       timeout: 2s
       interval: 60s
       retries: 5
-    # networks:
-    #   - app-network
 
   smallurl:
     image: ${DOCKER_REGISTRY-}smallurl
@@ -31,8 +31,3 @@ services:
     depends_on:
       mssql:
         condition: service_healthy
-    # networks:
-    #   - app-network
-# networks:
-#   app-network:
-#     driver: bridge
