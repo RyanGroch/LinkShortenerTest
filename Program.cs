@@ -24,16 +24,11 @@ else if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "t
 }
 else
 {
-    var monsterAspConnString = builder.Configuration.GetConnectionString("MonsterAspConnection")
-        ?? throw new InvalidOperationException("Connection string 'MonsterAspConnection' not found.");
-
-    var dbPass = Environment.GetEnvironmentVariable("DB_PASSWORD")
-        ?? throw new InvalidOperationException("Database password 'DB_PASSWORD' is not set as an environment variable.");
-
-    var corrrectedConnString = monsterAspConnString.Replace("[DB_PASSWORD]", dbPass);
+    var prodConnString = Environment.GetEnvironmentVariable("DB_CONN")
+        ?? throw new InvalidOperationException("Environment variable 'DB_CONN' not found.");
 
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(corrrectedConnString));
+        options.UseSqlServer(prodConnString));
 }
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
