@@ -1,11 +1,11 @@
 @font-face {
-  font-family: Bungee;
-  src: url("/fonts/Bungee-Regular.ttf");
+  font-family: Outfit;
+  src: url("/fonts/Outfit.ttf");
 }
 
 @font-face {
-  font-family: Montserrat;
-  src: url("/fonts/Montserrat.ttf");
+  font-family: Inter;
+  src: url("/fonts/Inter.ttf");
 }
 
 * {
@@ -16,6 +16,7 @@
 
 button,
 input {
+  font-family: Inter, sans-serif;
   background: none;
   border: 0;
   color: black;
@@ -32,7 +33,7 @@ input::placeholder {
 }
 
 body {
-  font-family: Montserrat, sans-serif;
+  font-family: Inter, sans-serif;
   background-color: #031942;
   min-height: 100svh;
 
@@ -67,7 +68,8 @@ body {
 }
 
 .nav__home-link {
-  font-family: Bungee, sans-serif;
+  font-family: Outfit, sans-serif;
+  font-weight: bold;
   display: block;
   font-size: 2rem;
   text-decoration: none;
@@ -130,7 +132,7 @@ body {
 .nav__list-item button {
   background-color: #0076a9;
   width: 100%;
-  font-family: Monserrat, sans-serif;
+  font-family: Inter, sans-serif;
   display: block;
   text-decoration: none;
   color: black;
@@ -166,6 +168,11 @@ body {
   align-items: center;
   border-bottom: 1px solid #e1e1e1;
   padding: 1rem 0.75rem;
+}
+
+.sidebar__header h2 {
+  font-family: Outfit, sans-serif;
+  font-weight: bold;
 }
 
 .sidebar__content {
@@ -348,6 +355,7 @@ body {
 }
 
 .general-content {
+  font-size: 1.25rem;
   color: black;
   line-height: 1.8rem;
   padding: 3rem 0 1rem;
@@ -373,6 +381,11 @@ body {
 
 .general-content li {
   padding-bottom: 0.5rem;
+}
+
+.general-content a {
+  color: white;
+  font-weight: bold;
 }
 
 .main {
@@ -522,9 +535,11 @@ body {
   background-color: #005c7f;
 }
 
-.footer__text {
+.footer__text,
+.footer__text a {
   text-align: center;
   padding: 0.25rem 0.5rem;
+  color: white;
 }
 
 @media (width > 40rem) {
